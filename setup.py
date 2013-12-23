@@ -4,7 +4,7 @@ long_description = open('README.md').read()
 
 setup(name="leagueoflegends-python",
       version="0.1",
-      py_modules=["leagueoflegends"],
+      py_modules=["leagueoflegends.leagueoflegends"],
       description="Libraries for interacting with the official League of Legends API",
       author="Jennie Lees <jennielees@gmail.com>",
       author_email="jennielees@gmail.com",
@@ -19,6 +19,5 @@ setup(name="leagueoflegends-python",
                    "Programming Language :: Python",
                    "Topic :: Software Development" +
                    " :: Libraries :: Python Modules",
-                   ],
-      install_requires=["simplejson >= 1.8"]
+                   ]
       )
