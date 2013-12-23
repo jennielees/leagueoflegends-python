@@ -95,3 +95,11 @@ def test_summoner_id():
     lol.set_summoner(TEST_SUMMONER_NAME)
     result = lol.get_summoner_by_id()
     assert result["name"] == TEST_SUMMONER_NAME
+
+# Test smart get_summoner
+
+def test_summoner_get():
+    result = lol.get_summoner(TEST_SUMMONER_NAME)
+    assert result["id"] == TEST_SUMMONER_ID
+    result = lol.get_summoner(TEST_SUMMONER_ID)
+    assert result["name"] == TEST_SUMMONER_NAME

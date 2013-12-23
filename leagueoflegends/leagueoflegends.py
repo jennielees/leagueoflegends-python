@@ -15,8 +15,7 @@ __version__ = '0.1'
 import urllib2
 import json
 import unicodedata
-
-from pprint import pprint
+import re
 
 class LeagueOfLegends:
 
@@ -205,6 +204,9 @@ class LeagueOfLegends:
     def get_summoner_id_from_name(self, summoner_name):
         return self.get_summoner_by_name(summoner_name)["id"]
 
+    def get_summoner_name_from_id(self, summoner_id):
+        return self.get_summoner_by_id(summoner_id)["name"]
+
     def get_summoner_masteries(self, summoner_id=None):
         if summoner_id is None:
             if self.summoner_id is not None:
@@ -276,6 +278,14 @@ class LeagueOfLegends:
 
     def get_ranked_stats(self, summoner_id):
         return self.get_summoner_ranked_stats(summoner_id)
+
+    def get_summoner(self, summoner_argument):
+        numeric = re.compile('\d+')
+        if numeric.match(str(summoner_argument)):
+            # Argument is an ID
+            return self.get_summoner_by_id(summoner_argument)
+        else:
+            return self.get_summoner_by_name(summoner_argument)
 
 class RiotResponse(object):
     def __init__(self, **kwargs):
