@@ -1,6 +1,36 @@
 leagueoflegends-python
 ==========
 
+###Quickstart
+
+    pip install leagueoflegends
+    
+    from leagueoflegends import LeagueOfLegends, RiotError
+    lol = LeagueOfLegends('your-api-key')
+    
+    # Call the API with explicit summoner ID
+    id = lol.get_summoner_by_name('your-summoner-name')
+    lol.get_games(id)
+    
+    # Or set the ID globally for all future calls
+    lol.set_summoner('your-summoner-name')
+    lol.get_summoner_stats()
+    lol.get_summoner_ranked_stats()
+    
+    # Access data through dictionaries
+    try:
+        teams = lol.get_summoner_teams()
+        for t in teams:
+            print t["name"]
+            for m in t["roster"]["memberList"]:
+                id = m["playerId"]
+                print id
+                print lol.get_summoner_by_id(id)["name"]
+    except RiotError, e:
+        print e.error_msg
+    
+###Words
+
 This is an unofficial Python Library for the official League of Legends API (Riot Developer API), wrapping HTTP calls into Python dictionaries.
 
 Full documentation for Riot's RESTful API is [here](https://developer.riotgames.com/api/). Dictionaries returned by this library corresponds to the datatypes documented there.
