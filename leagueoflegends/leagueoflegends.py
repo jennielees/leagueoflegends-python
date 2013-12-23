@@ -7,6 +7,9 @@ Copyright (c) 2013 Jennie Lees <jennielees@gmail.com>
 
 The LoL API belongs to Riot and can be found here:
 https://developer.riotgames.com/
+
+This product is not endorsed, certified or otherwis
+approved in any way by Riot Games, Inc. or any of its affiliates.
 """
 
 __author__ = 'Jennie Lees'
