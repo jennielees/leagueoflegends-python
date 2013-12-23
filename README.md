@@ -102,6 +102,16 @@ Returns the same information as `get_summoner_by_id` but queried by name.
 
     summoner = lol.get_summoner_by_name('RiotPhreak')
     print summoner["id"]
+   
+####get_summoner
+
+Convenience shortcut to the above two functions. Takes either an ID or a name and returns the summoner object.
+   
+    summoner = lol.get_summoner('RiotPhreak')
+    print summoner["id"]
+    
+    summoner = lol.get_summoner('12345678')
+    print summoner["name"]
     
 ####get_summoner_id_from_name
 
