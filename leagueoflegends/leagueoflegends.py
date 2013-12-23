@@ -36,6 +36,11 @@ class LeagueOfLegends:
             req = urllib2.Request(url)
 
             if url in self.__cache:
+                # Return summoner detail URLs from cache explicitly
+                # to avoid repeated API calls
+                if url.find('summoner/by-name'):
+                    return self.__cache[url]['response']
+
                 if 'etag' in self.__cache[url]:
                     print 'Adding ETag to request header: '\
                         + self.__cache[url]['etag']
@@ -83,9 +88,12 @@ class LeagueOfLegends:
 
     def set_api_region(self, region):
         if region is not None:
-            self.api_region = region
-            self.update_api_url()
-            return self.api_url
+            if region.lower() in ['na', 'euw', 'eune', 'br', 'tr']:
+                self.api_region = region.lower()
+                self.update_api_url()
+                return self.api_url
+            else:
+                return None
 
     def set_api_version(self, version):
         if version is not None:
@@ -233,7 +241,7 @@ class LeagueOfLegends:
         response = json.loads(self.__webrequest(url))
         return response["summoners"]
 
-    def get_summoner_team(self, summoner_id):
+    def get_summoner_teams(self, summoner_id=None):
         if summoner_id is None:
             if self.summoner_id is not None:
                 summoner_id = self.summoner_id
@@ -249,7 +257,7 @@ class LeagueOfLegends:
     # ID if there is none passed in.
     def set_summoner(self, summoner_name):
         summoner_id = self.get_summoner_by_name(summoner_name)["id"]
-        print summoner_id
+     #   print summoner_id
         self.summoner_id = summoner_id
 
     def set_summoner_id(self, summoner_id):
