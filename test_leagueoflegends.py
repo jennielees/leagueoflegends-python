@@ -4,9 +4,12 @@ from nose.tools import *
 import doctest
 import time
 
+import os
+
 doctest.testfile('README.md', verbose=False)
 
-lol = LeagueOfLegends('7d27ad1b-3407-4793-b09d-5b33fa15b96a')
+api_key = os.environ['LOL_API_KEY']
+lol = LeagueOfLegends(api_key)
 
 TEST_SUMMONER_ID = 5908
 TEST_SUMMONER_NAME = "Dyrus"
