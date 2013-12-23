@@ -3,9 +3,9 @@ from distutils.core import setup
 long_description = open('README.md').read()
 
 setup(name="leagueoflegends",
-      version="0.1",
+      version="0.11",
       py_modules=["leagueoflegends.leagueoflegends"],
-      description="Libraries for interacting with the official League of Legends API",
+      description="Unofficial libraries for interacting with the official League of Legends API",
       author="Jennie Lees <jennielees@gmail.com>",
       author_email="jennielees@gmail.com",
       license="WTFPL",
