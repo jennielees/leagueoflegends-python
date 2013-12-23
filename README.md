@@ -5,6 +5,8 @@ This is an unofficial Python Library for the official League of Legends API (Rio
 
 Full documentation for Riot's RESTful API is [here](https://developer.riotgames.com/api/). Dictionaries returned by this library corresponds to the datatypes documented there.
 
+Library code is distributed under the [WTFPL](http://www.wtfpl.net/). You are free to modify and redistribute. Attribution is a nice touch, and I'd love to hear what you get up to with this library.
+
 ###General Usage
 
 The Riot Developer API does not support anonymous access. You must [register for an API key](https://developer.riotgames.com/) with Riot before using this API.
