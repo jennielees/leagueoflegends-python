@@ -127,7 +127,7 @@ class LeagueOfLegends:
     def get_champions(self, free_to_play=False):
         # Champion API is version 1.1 only
         self.set_api_version('1.1')
-        url = self.api_url + 'champion?api_key=' + self.api_key
+        url = self.api_url + 'champion?api_key=' + self.api_key + '&freeToPlay=' + str(free_to_play)
         response = json.loads(self.__webrequest(url))
         return response["champions"]
 

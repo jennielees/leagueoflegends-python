@@ -36,6 +36,11 @@ def test_champion_get():
     result = lol.get_champions()
     assert len(result) > 0
 
+def test_champion_free():
+    result = lol.get_champions(True)
+    for c in result:
+        assert c['freeToPlay'] == True
+
 def test_summoner_games_get():
     result = lol.get_summoner_games(TEST_SUMMONER_ID)
     assert len(result) > 0
@@ -103,3 +108,8 @@ def test_summoner_get():
     assert result["id"] == TEST_SUMMONER_ID
     result = lol.get_summoner(TEST_SUMMONER_ID)
     assert result["name"] == TEST_SUMMONER_NAME
+
+# shortcut for command line to test tests.
+# usually run via nose
+if __name__=='__main__':
+    test_champion_free()
