@@ -137,7 +137,7 @@ class LeagueOfLegends:
         self.set_api_version('1.2')
         url = self.api_url + 'champion?freeToPlay=' + str(free_to_play) + '&api_key=%s' % (self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response["champions"]
+        return response['champions']
 
     # Retrieve champion by ID.
     # https://developer.riotgames.com/api/methods#!/617/1922
@@ -164,7 +164,7 @@ class LeagueOfLegends:
         self.set_api_version('1.3')
         url = self.api_url + 'game/by-summoner/%s/recent?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response["games"]
+        return response['games']
 
     # ====================================================================
     # league-v2.3
@@ -207,7 +207,7 @@ class LeagueOfLegends:
         self.set_api_version('2.4')
         url = self.api_url + 'league/by-team/%s/?api_key=%s' % (team_id, self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response[team_id]
+        return response
 
     # Get league entries mapped by team ID for a given list of team IDs.
     # https://developer.riotgames.com/api/methods#!/741/2638
@@ -220,17 +220,17 @@ class LeagueOfLegends:
         self.set_api_version('2.4')
         url = self.api_url + 'league/by-team/%s/entry?api_key=%s' % (team_id, self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response[team_id]
+        return response
 
     # Get challenger tier leagues.
     # Default selection for Ranked Solo Queue
     # https://developer.riotgames.com/api/methods#!/741/2637
     def get_challenger(self, ranked_solo=False, ranked_5s=False, ranked_3s=False):
-        queue = "RANKED_SOLO_5x5"
+        queue = 'RANKED_SOLO_5x5'
         if ranked_5s == True:
-            queue = "RANKED_TEAM_5x5"
+            queue = 'RANKED_TEAM_5x5'
         elif ranked_3s == True:
-            queue = "RANKED_TEAM_3x3"
+            queue = 'RANKED_TEAM_3x3'
         self.set_api_version('2.4')
         url = self.api_url + 'league/challenger?type=%s&api_key=%s' % (queue, self.api_key)
         response = json.loads(self.__webrequest(url))
@@ -248,14 +248,14 @@ class LeagueOfLegends:
         versionURL = ''
         champDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         dataByIdURL = 'dataById=%s&' % (dataById)
         if champData != None:
             champDataURL = 'champData=%s&' % (champData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/champion?%s%s%s%s&api_key=%s' % (self.api_version, localeURL, versionURL, dataByIdURL, champDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/champion?%s%s%s%sapi_key=%s' % (self.api_version, localeURL, versionURL, dataByIdURL, champDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -268,13 +268,13 @@ class LeagueOfLegends:
         versionURL = ''
         champDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if champData != None:
             champDataURL = 'champData=%s&' % (champData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/champion/%s?%s%s%s&api_key=%s' % (self.api_version, champion_id, localeURL, versionURL, champDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/champion/%s?%s%s%sapi_key=%s' % (self.api_version, champion_id, localeURL, versionURL, champDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -285,13 +285,13 @@ class LeagueOfLegends:
         versionURL = ''
         itemListDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if itemListData != None:
             itemListDataURL = 'itemListData=%s&' % (itemListData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/item?%s%s%s&api_key=%s' % (self.api_version, localeURL, versionURL, itemListDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/item?%s%s%sapi_key=%s' % (self.api_version, localeURL, versionURL, itemListDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -304,13 +304,13 @@ class LeagueOfLegends:
         versionURL = ''
         itemListDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if itemListData != None:
             itemListDataURL = 'itemListData=%s&' % (itemListData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/item/%s?%s%s%s&api_key=%s' % (self.api_version, item_id, localeURL, versionURL, itemListDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/item/%s?%s%s%sapi_key=%s' % (self.api_version, item_id, localeURL, versionURL, itemListDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -321,13 +321,13 @@ class LeagueOfLegends:
         versionURL = ''
         masteryListDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if masteryListData != None:
             masteryListDataURL = 'masteryListData=%s&' % (masteryListData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/mastery?%s%s%s&api_key=%s' % (self.api_version, localeURL, versionURL, masteryListDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/mastery?%s%s%sapi_key=%s' % (self.api_version, localeURL, versionURL, masteryListDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -340,13 +340,13 @@ class LeagueOfLegends:
         versionURL = ''
         masteryListDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if masteryListData != None:
             masteryListDataURL = 'masteryListData=%s&' % (masteryListData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/mastery/%s?%s%s%s&api_key=%s' % (self.api_version, mastery_id, localeURL, versionURL, masteryListDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/mastery/%s?%s%s%sapi_key=%s' % (self.api_version, mastery_id, localeURL, versionURL, masteryListDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -365,13 +365,13 @@ class LeagueOfLegends:
         versionURL = ''
         runeDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if runeData != None:
             runeDataURL = 'runeData=%s&' % (runeData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/rune?%s%s%s&api_key=%s' % (self.api_version, localeURL, versionURL, runeDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/rune?%s%s%sapi_key=%s' % (self.api_version, localeURL, versionURL, runeDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -384,13 +384,13 @@ class LeagueOfLegends:
         versionURL = ''
         runeDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if runeData != None:
             runeDataURL = 'runeData=%s&' % (runeData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/rune/%s?%s%s%s&api_key=%s' % (self.api_version, rune_id, localeURL, versionURL, runeDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/rune/%s?%s%s%sapi_key=%s' % (self.api_version, rune_id, localeURL, versionURL, runeDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -401,14 +401,14 @@ class LeagueOfLegends:
         versionURL = ''
         spellDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         dataByIdURL = 'dataById=%s&' % (dataById)
         if spellData != None:
             spellDataURL = 'spellData=%s&' % (spellData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/summoner-spell?%s%s%s%s&api_key=%s' % (self.api_version, localeURL, versionURL, dataByIdURL, spellDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/summoner-spell?%s%s%s%sapi_key=%s' % (self.api_version, localeURL, versionURL, dataByIdURL, spellDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -421,13 +421,13 @@ class LeagueOfLegends:
         versionURL = ''
         spellDataURL = ''
         if locale != None:
-            localeURL = "locale=%s&" % (locale)
+            localeURL = 'locale=%s&' % (locale)
         if version != None:
             versionURL = 'version=%s&' % (version)
         if spellData != None:
             spellDataURL = 'spellData=%s&' % (spellData)
         self.set_api_version('1.2')
-        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/summoner-spell/%s?%s%s%s&api_key=%s' % (self.api_version, summoner_spell_id, localeURL, versionURL, spellDataURL, self.api_key)
+        url = self.API_BASE_URL + '/static-data/' + self.api_region + '/v%s/summoner-spell/%s?%s%s%sapi_key=%s' % (self.api_version, summoner_spell_id, localeURL, versionURL, spellDataURL, self.api_key)
         response = json.loads(self.__webrequest(url))
         return response
 
@@ -452,14 +452,12 @@ class LeagueOfLegends:
             else:
                 return
         if season is None:
-            seasonURL = ""
+            seasonURL = ''
         else:
-            seasonURL = "?season=SEASON%s" % (season)
+            seasonURL = 'season=SEASON%s&' % (season)
         self.set_api_version('1.3')
-        url = self.api_url + 'stats/by-summoner/%s/ranked%s&api_key=%s' % (summoner_id, seasonURL, self.api_key)
+        url = self.api_url + 'stats/by-summoner/%s/ranked?%sapi_key=%s' % (summoner_id, seasonURL, self.api_key)
         response = json.loads(self.__webrequest(url))
-        if response["summonerId"] != summoner_id:
-            raise DataMismatchError
         return response
 
     # Get player stats summaries by summoner ID.
@@ -471,14 +469,12 @@ class LeagueOfLegends:
             else:
                 return
         if season is None:
-            seasonURL = ""
+            seasonURL = ''
         else:
-            seasonURL = "?season=SEASON%s" % (season)
+            seasonURL = 'season=SEASON%s&' % (season)
         self.set_api_version('1.3')
-        url = self.api_url + 'stats/by-summoner/%s/summary%s&api_key=%s' % (summoner_id, seasonURL, self.api_key)
+        url = self.api_url + 'stats/by-summoner/%s/summary?%sapi_key=%s' % (summoner_id, seasonURL, self.api_key)
         response = json.loads(self.__webrequest(url))
-        if response["summonerId"] != summoner_id:
-            raise DataMismatchError
         return response
 
     # ====================================================================
@@ -519,7 +515,7 @@ class LeagueOfLegends:
         self.set_api_version('1.4')
         url = self.api_url + 'summoner/%s/masteries?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response[str(summoner_id)]
+        return response
 
     # Get summoner names mapped by summoner ID for a given list of summoner IDs.
     # https://developer.riotgames.com/api/methods#!/620/1934
@@ -540,7 +536,7 @@ class LeagueOfLegends:
         self.set_api_version('1.4')
         url = self.api_url + 'summoner/%s/runes?api_key=%s' % (summoner_id, self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response[str(summoner_id)]
+        return response
 
     # ====================================================================
     # team-v2.3
@@ -571,14 +567,15 @@ class LeagueOfLegends:
         self.set_api_version('2.3')
         url = self.api_url + 'team/%s?api_key=%s' % (team_id, self.api_key)
         response = json.loads(self.__webrequest(url))
-        return response[team_id]
+        return response
 
     # ====================================================================
     # Convenience function to set local summoner ID variable
     # from summoner name. All future API calls will use this
     # ID if there is none passed in.
+    
     def set_summoner(self, summoner_name):
-        summoner_id = self.get_summoner_by_name(summoner_name)["id"]
+        summoner_id = self.get_summoner_by_name(summoner_name)[summoner_name.lower()]['id']
         # print summoner_id
         self.summoner_id = summoner_id
 
@@ -591,10 +588,10 @@ class LeagueOfLegends:
         self.team_id = team_id
 
     def get_summoner_id_from_name(self, summoner_name):
-        return self.get_summoner_by_name(summoner_name)["id"]
+        return self.get_summoner_by_name(summoner_name)[summoner_name.lower()]['id']
 
     def get_summoner_name_from_id(self, summoner_id):
-        return self.get_summoner_by_id(summoner_id)["name"]
+        return self.get_summoner_by_id(summoner_id)[str(summoner_id)]['name']
 
     # Convenience functions to save typing.
     def get_games(self, summoner_id):
@@ -616,6 +613,8 @@ class LeagueOfLegends:
             return self.get_summoner_by_id(summoner_argument)
         else:
             return self.get_summoner_by_name(summoner_argument)
+
+# ====================================================================
 
 class RiotResponse(object):
     def __init__(self, **kwargs):
