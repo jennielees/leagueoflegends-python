@@ -167,7 +167,7 @@ class LeagueOfLegends:
         return response['games']
 
     # ====================================================================
-    # league-v2.3
+    # league-v2.4
     # https://developer.riotgames.com/api/methods#!/741
 
     # Get leagues mapped by summoner ID for a given list of summoner IDs.
