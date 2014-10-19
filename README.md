@@ -67,6 +67,7 @@ Returns a list of all champions. Optionally only return free to play champions.
     champs = lol.get_champions(free_to_play=False)
     for champ in champs:
         print champ["name"]
+        
 
 ###Summoner-Specific Methods
 
@@ -181,6 +182,28 @@ Get team information for a specific summoner. Can return multiple teams.
             total_wins += 1 and match["win"]
     print total_wins
 
+
+###Matches
+
+####get_match ([API Doc](https://developer.riotgames.com/api/methods#!/856/2992))
+
+Returns the match details for a specific `match_id`. Optional parameter `include_timeline` to return game timeline.
+
+```
+match = lol.get_match(12345678, include_timeline=True)
+```
+
+####get_summoner_match_history ([API Doc](https://developer.riotgames.com/api/methods#!/855/2991))
+
+Returns the match history for a specific `summoner_id`. Optional parameters passed straight through to API: `championIds`, `rankedQueues`, `beginIndex`, `endIndex`.
+
+```
+matches = lol.get_summoner_match_history(12345678)
+matches = lol.get_summoner_match_history(12345678, championIds=1, rankedQueues='RANKED_SOLO_5x5')
+
+```
+
+###Convenience
 
 ####set_summoner
 

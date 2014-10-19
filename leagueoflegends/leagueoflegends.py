@@ -13,7 +13,7 @@ approved in any way by Riot Games, Inc. or any of its affiliates.
 """
 
 __author__ = 'Jennie Lees'
-__version__ = '1.4'
+__version__ = '1.4b'
 
 import urllib2
 import json
@@ -168,7 +168,7 @@ class LeagueOfLegends:
         return response['games']
 
     # ====================================================================
-    # league-v2.4
+    # league-v2.5
     # https://developer.riotgames.com/api/methods#!/741
 
     # Get leagues mapped by summoner ID for a given list of summoner IDs.
@@ -441,6 +441,47 @@ class LeagueOfLegends:
         return response
 
     # ====================================================================
+    # match-v2.2
+    # https://developer.riotgames.com/api/methods#!/856
+
+    # Get match detail from match ID.
+    # https://developer.riotgames.com/api/methods#!/856/2992
+    def get_match(self, match_id, include_timeline=False):
+        if not match_id: return
+        self.set_api_version('2.2')
+        url = self.api_url + 'match/%s?api_key=%s' % (match_id, self.api_key)
+        if include_timeline:
+            url += '&includeTimeline=True'
+        response = json.loads(self.__webrequest(url))
+        return response
+
+
+    # ====================================================================
+    # matchhistory-v2.2
+    # https://developer.riotgames.com/api/methods#!/855
+
+    # Get match history from summoner ID.
+    # https://developer.riotgames.com/api/methods#!/855/2991
+    # Optional arguments:
+    #  championIds (comma-separated)
+    #  rankedQueues (comma-separated)
+    #  beginIndex
+    #  endIndex
+    def get_summoner_match_history(self, summoner_id=None, **kwargs):
+        if summoner_id is None:
+            if self.summoner_id is not None:
+                summoner_id = self.summoner_id
+            else:
+                return
+        self.set_api_version('2.2')
+        url = self.api_url + 'matchhistory/%s?api_key=%s' % (summoner_id, self.api_key)
+        if kwargs:
+            from urllib import urlencode
+            url += '&' + urlencode(kwargs)
+        response = json.loads(self.__webrequest(url))
+        return response
+
+    # ====================================================================
     # stats-v1.3
     # https://developer.riotgames.com/api/methods#!/622
 
@@ -546,7 +587,7 @@ class LeagueOfLegends:
         return response
 
     # ====================================================================
-    # team-v2.3
+    # team-v2.4
     # https://developer.riotgames.com/api/methods#!/743
 
     # Get teams mapped by summoner ID for a given list of summoner IDs.

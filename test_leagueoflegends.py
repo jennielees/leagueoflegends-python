@@ -49,6 +49,23 @@ def test_summoner_league():
     result = lol.get_summoner_league(TEST_SUMMONER_ID)
     assert len(result) > 0
 
+def test_summoner_match_history():
+    result = lol.get_summoner_match_history(TEST_SUMMONER_ID)
+    assert result.get('matches') != None
+
+def test_summoner_match_subset():
+    result = lol.get_summoner_match_history(TEST_SUMMONER_ID,
+        championIds=13, rankedQueues='RANKED_SOLO_5x5')
+    assert result.get('matches') != None
+
+def test_match_no_timeline():
+    result = lol.get_match('1517262277')
+    assert result.get('matchId') == 1517262277
+
+def test_match_timeline():
+    result = lol.get_match('1517262277', include_timeline=True)
+    assert 'timeline' in result.keys()
+
 @raises(RiotError)
 def test_rate_limit_handling():
     result = lol.get_summoner_full_league(TEST_SUMMONER_ID)
