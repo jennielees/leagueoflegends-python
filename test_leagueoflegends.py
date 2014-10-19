@@ -20,7 +20,7 @@ TEST_SUMMONER_NAMES = [ "Dyrus", "RiotPhreak", "PhantomL0rd"]
 # Test region switching
 def test_region_set():
     url = lol.set_api_region('euw')
-    assert url == 'https://prod.api.pvp.net/api/lol/euw/v1.2/'
+    assert url == 'https://euw.api.pvp.net/api/lol/euw/v1.4/'
     url = lol.set_api_region('azeroth')
     assert url == None
     lol.set_api_region('na')
@@ -28,8 +28,8 @@ def test_region_set():
 # Test version switching
 def test_version_set():
     url = lol.set_api_version('1.1')
-    assert url == 'https://prod.api.pvp.net/api/lol/na/v1.1/'
-    lol.set_api_version('1.2')
+    assert url == 'https://na.api.pvp.net/api/lol/na/v1.1/'
+    lol.set_api_version('1.4')
 
 # Test champion retrieval
 def test_champion_get():
@@ -45,20 +45,15 @@ def test_summoner_games_get():
     result = lol.get_summoner_games(TEST_SUMMONER_ID)
     assert len(result) > 0
 
-def test_summoner_leagues():
-    result = lol.get_summoner_leagues(TEST_SUMMONER_ID)
-    assert len(result) > 0
-
-def test_summoner_stats():
-    result = lol.get_summoner_stats(TEST_SUMMONER_ID)
+def test_summoner_league():
+    result = lol.get_summoner_league(TEST_SUMMONER_ID)
     assert len(result) > 0
 
 @raises(RiotError)
 def test_rate_limit_handling():
-    result = lol.get_summoner_leagues(TEST_SUMMONER_ID)
-    league_members = result["RANKED_SOLO_5x5"]["entries"]
+    result = lol.get_summoner_full_league(TEST_SUMMONER_ID)
+    league_members = result[0]["entries"]
     for summoner in league_members[:10]:
-#        print summoner["playerOrTeamId"]
         lol.get_summoner_by_id(summoner["playerOrTeamId"])
 
 def test_sleep_for_rate_limit():
@@ -66,6 +61,10 @@ def test_sleep_for_rate_limit():
     # in succession, a rate limit error is guaranteed.
     print "Sleeping for 10 seconds to avoid rate limits."
     time.sleep(10)
+
+def test_summoner_stats():
+    result = lol.get_summoner_stats(TEST_SUMMONER_ID)
+    assert len(result) > 0
 
 def test_summoner_ranked_stats():
     result = lol.get_summoner_ranked_stats(TEST_SUMMONER_ID)
@@ -89,11 +88,12 @@ def test_summoner_runes():
 
 def test_summoner_names_batch():
     result = lol.get_summoner_names(TEST_SUMMONER_IDS)
-    assert result[0]["name"] == TEST_SUMMONER_NAMES[0]
+    for i in range(0,3):
+        assert result.get(str(TEST_SUMMONER_IDS[i])) == TEST_SUMMONER_NAMES[i]
 
 def test_summoner_teams():
     result = lol.get_summoner_teams(TEST_SUMMONER_ID)
-    assert result[0].get("teamStatSummary") is not None
+    assert result[0].get("roster") is not None
 
 # Test internal summoner_id setter
 def test_summoner_id():
