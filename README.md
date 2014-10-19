@@ -47,10 +47,11 @@ At last update this supported API versions:
  * stats-1.3
  * summoner-1.4
  * team-2.4
+ * match-2.2
+ * matchhistory-2.2
 
 Not supported yet:
  * lol-status-1.0
- * match-2.2
 
 ###General Usage
 
