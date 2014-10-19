@@ -39,6 +39,19 @@ Full documentation for Riot's RESTful API is [here](https://developer.riotgames.
 
 Library code is distributed under the [WTFPL](http://www.wtfpl.net/). You are free to modify and redistribute. Attribution is a nice touch, and I'd love to hear what you get up to with this library.
 
+At last update this supported API versions:
+ * champion-1.2
+ * game-1.3
+ * league-2.5
+ * lol-static-data-1.2
+ * stats-1.3
+ * summoner-1.4
+ * team-2.4
+
+Not supported yet:
+ * lol-status-1.0
+ * match-2.2
+
 ###General Usage
 
 The Riot Developer API does not support anonymous access. You must [register for an API key](https://developer.riotgames.com/) with Riot before using this API.
@@ -190,6 +203,8 @@ Takes a region as argument and executes all further API calls against that regio
 Valid regions: `euw, eune, na, tr, br`.
 
 Note: not all API functions support all regions. Check Riot documentation if you run into weird errors. At time of writing, `na, euw, eune` regions are valid for all calls.
+
+Static data calls run against a `global` domain with a slightly different API URL format.
 
 ####set_api_version
 
